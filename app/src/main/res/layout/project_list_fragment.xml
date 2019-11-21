@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.pristyn.care.newmvvm.ui.ProjectListViewModel" />
+
+        <variable
+            name="viewmodel"
+            type="ProjectListViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:context=".ui.ProjectListFragment">
+
+        <EditText
+            android:id="@+id/et_name"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:text="@{viewmodel.getName()}"
+            />
+
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> viewmodel.onButtonClick(etName.getText().toString())}"
+            android:text="Change" />
+        <!-- for two way data binding i.e it cahnges ui and ui changes it use "@={viewmodel.getLastName()}"-->
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@{viewmodel.name}"
+
+            tools:text="Sandeep"
+            android:textStyle="bold" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/doctor_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:paddingBottom="16dp"
+            android:visibility="gone"
+            app:layoutManager="LinearLayoutManager"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
+
+
+    </LinearLayout>
+
+
+</layout>
