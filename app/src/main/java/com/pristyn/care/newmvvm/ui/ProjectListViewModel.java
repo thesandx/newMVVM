@@ -8,27 +8,23 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.pristyn.care.newmvvm.models.Project;
+import com.pristyn.care.newmvvm.repository.MvvmRepository;
+
+import java.util.List;
+
 
 public class ProjectListViewModel extends ViewModel {
-     MutableLiveData<String> name;
+     private final LiveData<List<Project>> projectListObservable;
 
 
     public ProjectListViewModel(/*@NonNull Application application*/) {
         //super(application);
-        name = new MutableLiveData<>();
-        name.setValue("Sandeep");
+        projectListObservable = MvvmRepository.getInstance().getProjectList("Google");
     }
     // TODO: Implement the ViewModel
 
-    public LiveData<String> getName() {
-        return name;
-    }
-
-    public void onButtonClick(String string) {
-        setName(string);
-    }
-
-    public void setName(String name) {
-        this.name.setValue(name);
+    public LiveData<List<Project>> getProjectListObservable() {
+        return projectListObservable;
     }
 }
